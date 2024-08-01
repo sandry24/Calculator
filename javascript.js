@@ -12,8 +12,8 @@ let number2 = '';
 let operator = '';
 
 const operate = function(number1, number2, operator) {
-    number1 = parseInt(number1);
-    number2 = parseInt(number2);
+    number1 = parseFloat(number1);
+    number2 = parseFloat(number2);
     switch(operator) {
         case '+':
             return add(number1, number2);
@@ -39,6 +39,10 @@ const multiply = function(number1, number2) {
 }
 
 const divide = function(number1, number2) {
+    if (number1 === 0 && number2 === 0) {
+        alert("Undefined");
+        return 0;
+    }
     return number1 / number2;
 }
 
@@ -46,8 +50,16 @@ const addToDisplay = function (element) {
     mainDisplay.textContent += element.textContent;
 }
 
+const addToSecondaryDisplay = function () {
+    if (number1 === '' || operator === '' || number2 === '')
+        return;
+
+    secondaryDisplay.textContent = operate(number1, number2, operator);
+}
+
 const clearDisplay = function () {
     mainDisplay.textContent = '';
+    secondaryDisplay.textContent = '';
     number1 = '';
     number2 = '';
     operator = '';
@@ -77,6 +89,7 @@ const enableOpButtons = function () {
         button.classList.remove("disabled");
     });
     removeSelectedClass();
+    secondaryDisplay.textContent = '';
 }
 
 const addSelectedClass = function (button) {
@@ -137,5 +150,9 @@ deleteButton.addEventListener("click", () => {
 
 equalButton.addEventListener("click", () => {
     handleEqual();
+});
+
+document.addEventListener("click", () => {
+    addToSecondaryDisplay();
 });
 
