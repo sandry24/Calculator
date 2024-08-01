@@ -190,5 +190,5 @@ equalButton.addEventListener("click", () => {
 document.addEventListener("click", () => {
     updateSecondaryDisplay();
     updateDisplay();
-    currentNumberHasDot() ? disableDotButton() : enableDotButton;
+    currentNumberHasDot() ? disableDotButton() : enableDotButton();
 });
