@@ -5,7 +5,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(240, 240, 240);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -30,6 +30,17 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
+    align-self: stretch;
+    text-align: right;
+    font-size: 2rem;
+}
+
+#expression {
+    color: gray;
+}
+
+#answer {
+    color: white;
 }
 
 #buttons {
@@ -63,7 +74,7 @@ body {
 }
 
 .number-cell {
-    background-color: rgb(215, 215, 215);
+    background-color: rgb(234, 234, 234);
 }
 
 .operation-cell {
