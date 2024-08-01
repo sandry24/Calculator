@@ -36,7 +36,10 @@ const operate = function (number1, number2, operator) {
     if (number2 === '')
         number2 = number1;
 
-    return eval(number1, number2, operator);
+    let result = eval(number1, number2, operator);
+    if (result === 0)
+        return '';
+    return String(result);
 }
 
 const add = function(number1, number2) {
@@ -63,8 +66,14 @@ const addToDisplay = function (element) {
     mainDisplay.textContent += element.textContent;
 }
 
-const addToSecondaryDisplay = function () {
-    secondaryDisplay.textContent = operate(number1, number2, operator);
+const updateSecondaryDisplay = function () {
+    secondaryDisplay.textContent = convertNumber(operate(number1, number2, operator));
+}
+
+const convertNumber = function (number) {
+    if (number === '')
+        return '0';
+    return number;
 }
 
 const clearDisplay = function () {
@@ -74,6 +83,10 @@ const clearDisplay = function () {
     number2 = '';
     operator = '';
     enableOpButtons();
+}
+
+const updateDisplay = function () {
+    mainDisplay.textContent = convertNumber(number1) + ' ' + operator + ' ' + number2;
 }
 
 const deleteDisplay = function () {
@@ -134,7 +147,6 @@ const handleEqual = function () {
 
 nrButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        addToDisplay(button);
         handleNumber(button);
     });
 });
@@ -142,7 +154,6 @@ nrButtons.forEach((button) => {
 opButtons.forEach((button) => {
     button.addEventListener("click", () => {
         disableOpButtons();
-        addToDisplay(button);
         handleOperator(button);
         addSelectedClass(button);
     });
@@ -161,7 +172,8 @@ equalButton.addEventListener("click", () => {
 });
 
 document.addEventListener("click", () => {
-    addToSecondaryDisplay();
+    updateSecondaryDisplay();
+    updateDisplay();
 });
 
 // also dot
