@@ -11,7 +11,7 @@ let number1 = '';
 let number2 = '';
 let operator = '';
 
-const operate = function(number1, number2, operator) {
+const eval = function(number1, number2, operator) {
     number1 = parseFloat(number1);
     number2 = parseFloat(number2);
     switch(operator) {
@@ -24,6 +24,19 @@ const operate = function(number1, number2, operator) {
         case '/':
             return divide(number1, number2);
     }
+}
+
+const operate = function (number1, number2, operator) {
+    if (number1 === '')
+        number1 = '0';
+
+    if (operator === '')
+        return number1;
+
+    if (number2 === '')
+        number2 = number1;
+
+    return eval(number1, number2, operator);
 }
 
 const add = function(number1, number2) {
@@ -51,9 +64,6 @@ const addToDisplay = function (element) {
 }
 
 const addToSecondaryDisplay = function () {
-    if (number1 === '' || operator === '' || number2 === '')
-        return;
-
     secondaryDisplay.textContent = operate(number1, number2, operator);
 }
 
@@ -115,9 +125,6 @@ const handleOperator = function (button) {
 }
 
 const handleEqual = function () {
-    if (number1 === '' || operator === '' || number2 === '')
-        return;
-
     let result = operate(number1, number2, operator);
     clearDisplay();
     number1 = result;
@@ -157,3 +164,4 @@ document.addEventListener("click", () => {
     addToSecondaryDisplay();
 });
 
+// also dot
