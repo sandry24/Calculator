@@ -4,6 +4,7 @@ const opButtons = document.querySelectorAll(".operator");
 const equalButton = document.querySelector(".equal");
 const clearButton = document.querySelector(".clear");
 const deleteButton = document.querySelector(".delete");
+const dotButton = document.querySelector(".dot");
 const mainDisplay = document.querySelector("#main-display");
 const secondaryDisplay = document.querySelector("#secondary-display");
 
@@ -86,7 +87,7 @@ const clearDisplay = function () {
 }
 
 const updateDisplay = function () {
-    mainDisplay.textContent = convertNumber(number1) + ' ' + operator + ' ' + number2;
+    mainDisplay.textContent = convertNumber(number1) + operator + number2;
 }
 
 const deleteDisplay = function () {
@@ -113,7 +114,14 @@ const enableOpButtons = function () {
         button.classList.remove("disabled");
     });
     removeSelectedClass();
-    secondaryDisplay.textContent = '';
+}
+
+const disableDotButton = function () {
+    dotButton.classList.add("disabled");
+}
+
+const enableDotButton = function () {
+    dotButton.classList.remove("disabled");
 }
 
 const addSelectedClass = function (button) {
@@ -124,6 +132,12 @@ const removeSelectedClass = function () {
     opButtons.forEach((button) => {
         button.classList.remove("selected");
     });
+}
+
+const currentNumberHasDot = function () {
+    if (operator === '') 
+        return number1.includes('.');
+    return number2.includes('.');
 }
 
 const handleNumber = function (button) {
@@ -141,7 +155,9 @@ const handleEqual = function () {
     let result = operate(number1, number2, operator);
     clearDisplay();
     number1 = result;
-    mainDisplay.textContent = number1;
+    if (number1 === "NaN")
+        number1 = '';
+    mainDisplay.textContent = convertNumber(number1);
     enableOpButtons();
 }
 
@@ -174,6 +190,5 @@ equalButton.addEventListener("click", () => {
 document.addEventListener("click", () => {
     updateSecondaryDisplay();
     updateDisplay();
+    currentNumberHasDot() ? disableDotButton() : enableDotButton;
 });
-
-// also dot
