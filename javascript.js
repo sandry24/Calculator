@@ -63,6 +63,7 @@ const clearDisplay = function () {
     number1 = '';
     number2 = '';
     operator = '';
+    enableOpButtons();
 }
 
 const deleteDisplay = function () {
