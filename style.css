@@ -32,15 +32,18 @@ body {
     border-radius: 5px;
     align-self: stretch;
     text-align: right;
-    font-size: 2rem;
 }
 
-#expression {
+#secondary-display {
     color: gray;
+    font-size: 1.75rem;
+    height: 2rem;
 }
 
-#answer {
+#main-display {
     color: white;
+    font-size: 2rem;
+    height: 2.25rem;
 }
 
 #buttons {
@@ -67,27 +70,39 @@ body {
     margin: 0;
     width: 6rem;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
 
 .flex-cell:hover {
     filter: brightness(85%);
 }
 
-.number-cell {
+.number {
     background-color: rgb(234, 234, 234);
 }
 
-.operation-cell {
+.operator {
     background-color: rgb(255, 173, 20);
     color: white;
 }
 
-.equal-cell {
+.equal {
     background-color: rgb(167, 73, 255);
     color: white;
 }
 
-.special-cell {
-    background-color: rgb(255, 116, 116);
+.delete,
+.clear {
+    background-color: rgb(255, 106, 106);
     color: white;
+}
+
+.selected {
+    filter: brightness(70%);
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
