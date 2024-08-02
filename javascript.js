@@ -28,11 +28,11 @@ const eval = function(number1, number2, operator) {
 }
 
 const operate = function (number1, number2, operator) {
-    if (number1 === '')
-        number1 = '0';
-
     if (operator === '')
         return number1;
+
+    if (number1 === '')
+        number1 = '0';
 
     if (number2 === '')
         number2 = number1;
@@ -68,6 +68,8 @@ const addToDisplay = function (element) {
 }
 
 const updateSecondaryDisplay = function () {
+    if (operator === '')
+        return;
     secondaryDisplay.textContent = convertNumber(operate(number1, number2, operator));
 }
 

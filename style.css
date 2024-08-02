@@ -38,14 +38,12 @@ body {
     color: gray;
     font-size: 1.75rem;
     height: 2rem;
-    overflow: hidden;
 }
 
 #main-display {
     color: white;
     font-size: 2rem;
     height: 2.25rem;
-    overflow: hidden;
 }
 
 #buttons {
