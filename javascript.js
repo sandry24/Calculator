@@ -68,9 +68,14 @@ const addToDisplay = function (element) {
 }
 
 const updateSecondaryDisplay = function () {
-    if (operator === '')
+    if (operator === '') {
+        secondaryDisplay.textContent = '';
         return;
-    secondaryDisplay.textContent = convertNumber(operate(number1, number2, operator));
+    }
+    
+    let text = convertNumber(operate(number1, number2, operator));
+    text = text.substring(0, 21);
+    secondaryDisplay.textContent = text;
 }
 
 const convertNumber = function (number) {
@@ -89,7 +94,9 @@ const clearDisplay = function () {
 }
 
 const updateDisplay = function () {
-    mainDisplay.textContent = convertNumber(number1) + operator + number2;
+    let text = convertNumber(number1) + operator + number2;
+    text = text.substring(0, 21);
+    mainDisplay.textContent = text;
 }
 
 const deleteDisplay = function () {
